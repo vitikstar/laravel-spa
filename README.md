@@ -330,7 +330,7 @@ git clone https://github.com/vitikstar/laravel-spa.git
 
 ## Встановіть Docker
 
-Перейдіть на офіційний сайт Docker.
+Перейдіть на офіційний сайт [Docker](https://www.docker.com/products/docker-desktop/).
 Завантажте та встановіть Docker, використовуючи стандартний процес для вашої операційної системи.
 
 ## Клонування репозиторію
@@ -344,7 +344,7 @@ git clone https://github.com/vitikstar/laravel-spa.git
 ## Перейдіть в кореневу папку проекту
 
 ```bash
-cd laravel-sp
+cd laravel-spa
 ```
 
 ### Запустіть Docker Compose
@@ -357,6 +357,7 @@ docker-compose up -d
 
 ### Використовуйте Postman для тестування API
 
-Завантажте та встановіть Postman.
+Завантажте та встановіть [Postman](https://www.postman.com/downloads/?utm_source=postman-home).
 Використовуйте Postman для здійснення тестів API.
+Для простоти завантажте [колекцію](spa.postman_collection.json) та імпортуйте її в постман
 Тепер ви готові використовувати цей проект та тестувати його API за допомогою Postman.
