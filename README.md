@@ -1,66 +1,362 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Коментарі API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+API для управління коментарями у системі.
 
-## About Laravel
+## Огляд
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+API надає можливість отримання, додавання та керування коментарями у системі.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Аутентифікація
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Більшість ендпоінтів вимагають аутентифікації. Для аутентифікації використовується токен (див. нижче). Адреса за якою доступні ендпоінти http://spa.edu-smart.space/ або якщо запустити контейнер http://localhost:8082
 
-## Learning Laravel
+### Реєстрація нового користувача
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### `POST /api/register`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Створює нового користувача у системі.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+##### Параметри запиту:
 
-## Laravel Sponsors
+- `name` (обов'язковий, унікальний) - ім'я користувача
+- `email` (обов'язковий, унікальний) - електронна пошта користувача
+- `password` (обов'язковий) - пароль користувача
+- `avatar` (необов'язковий) - файл в форматі jpeg,jpg,png,gif
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+##### Приклад успішної відповіді:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```json
+    {
+        "token":
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDExYzk4MWUxZDhhNWE0Mzg5ZmYxMjMxNTBlMmUxNjdhNTYyMDY5MWNkNzM3Mzc4NzM3ZWFhYjZlOTIyYmUxNjc2MzU3NjBmOTdiZjk4N2IiLCJpYXQiOjE2OTk1MzIyOTcuMjEwNTkzLCJuYmYiOjE2OTk1MzIyOTcuMjEwNTk0LCJleHAiOjE3MzExNTQ2OTcuMjAxODQ3LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.KuZObyuVeToYYJmWLEfhJ9ZUqRk2aW_qVJEdKAQP_FPfHaaYwP6LeCqiTLJBPPYNhou04a1Pbry0rBrn_YU8_pXV9jFco4YOn_CK-5ddFWl_FGEu54Mm-aZAowWBIk2NAIBpCfcnVQMy3uhTdIxuH0Rbf2G3AsACfUrfwsXVSH4EuL-i8Iuswov6VFVWiayNWmGxP7PARopY7aaR1pNahJ8BMb3CKaHDS0fjp8FWoo4ssN3b0gjKSov3rhrDwpvi_I7mXyKE3dwW3oOyvWu1ETsumNtkkFbgv6K-qbnuPEaorFSldPf2ZItK7XF0q2MH7U4nCMfBaFqTlhnyr8zxmefEau7lhhqY-3f3TolNTtDPWjjpPJzurVYXcBjhTpUB40olWbOVaBw1luv45pHxXMkx5IQh0VSPGr46mK1Bu43Z9I9JyoZvAEERZs2p1tInmLkiUB5MkTHLkSM1OjQKh2LHaTi9h2GaiBHjBHdzB-W9GDXcEyAeuphvVz86jvKK6Se9j_dqGJ-3mJrphnpgdayAid5JJ4jpP4hWpMn0AaYKzsrjzy4EVdYzV9FIXV1SEwkmcfCodv2nHvJHo7VNmv6spQG7KQ5tm37nXe5UxJT6rIIKcDaL-NnBz_ZNy45uh81Te3XTFq2GDTrHn__aCy9ylaR2TZ4bihjoB8dWDnc"
+    }
+```
 
-## Contributing
+#### `POST /api/login`
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Створює нового користувача у системі.
 
-## Code of Conduct
+##### Параметри запиту:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- `email` (обов'язковий) - електронна пошта користувача
+- `password` (обов'язковий) - пароль користувача
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+##### Приклад успішної відповіді:
 
-## License
+```json
+    {
+        "token":
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDExYzk4MWUxZDhhNWE0Mzg5ZmYxMjMxNTBlMmUxNjdhNTYyMDY5MWNkNzM3Mzc4NzM3ZWFhYjZlOTIyYmUxNjc2MzU3NjBmOTdiZjk4N2IiLCJpYXQiOjE2OTk1MzIyOTcuMjEwNTkzLCJuYmYiOjE2OTk1MzIyOTcuMjEwNTk0LCJleHAiOjE3MzExNTQ2OTcuMjAxODQ3LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.KuZObyuVeToYYJmWLEfhJ9ZUqRk2aW_qVJEdKAQP_FPfHaaYwP6LeCqiTLJBPPYNhou04a1Pbry0rBrn_YU8_pXV9jFco4YOn_CK-5ddFWl_FGEu54Mm-aZAowWBIk2NAIBpCfcnVQMy3uhTdIxuH0Rbf2G3AsACfUrfwsXVSH4EuL-i8Iuswov6VFVWiayNWmGxP7PARopY7aaR1pNahJ8BMb3CKaHDS0fjp8FWoo4ssN3b0gjKSov3rhrDwpvi_I7mXyKE3dwW3oOyvWu1ETsumNtkkFbgv6K-qbnuPEaorFSldPf2ZItK7XF0q2MH7U4nCMfBaFqTlhnyr8zxmefEau7lhhqY-3f3TolNTtDPWjjpPJzurVYXcBjhTpUB40olWbOVaBw1luv45pHxXMkx5IQh0VSPGr46mK1Bu43Z9I9JyoZvAEERZs2p1tInmLkiUB5MkTHLkSM1OjQKh2LHaTi9h2GaiBHjBHdzB-W9GDXcEyAeuphvVz86jvKK6Se9j_dqGJ-3mJrphnpgdayAid5JJ4jpP4hWpMn0AaYKzsrjzy4EVdYzV9FIXV1SEwkmcfCodv2nHvJHo7VNmv6spQG7KQ5tm37nXe5UxJT6rIIKcDaL-NnBz_ZNy45uh81Te3XTFq2GDTrHn__aCy9ylaR2TZ4bihjoB8dWDnc"
+    }
+```
+##### Приклад неуспішної відповіді:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```json
+    {
+        "error":
+            "Invalid credentials"
+    }
+```
+При реєстрації користувача на пошту адміністратора приходить лист.
+
+#### `POST /api/add-comment`
+
+Додає новий коментар.
+
+##### Параметри запиту:
+
+- `email` (обов'язковий) - електронна пошта користувача
+- `password` (обов'язковий) - пароль користувача
+- `file`  - файл формату JPG, GIF, PNG або текстовий файл який не може бути більший 100кб
+
+
+Потрібна аутентифікація в системі
+
+При додані тексту здійснюється перевірка на валідність тексту та адміністратору на пошту надсилається сповіщення.
+
+##### Приклад успішної відповіді:
+
+```json
+    {
+        "response": {
+            "user_id": 24,
+            "text": "<a>xcxfx</a>",
+            "parent_comment_id": "1",
+            "updated_at": "2023-11-09T13:28:40.000000Z",
+            "created_at": "2023-11-09T13:28:40.000000Z",
+            "id": 5,
+            "file": "storage/comment_file/5/1699536520.jpeg"
+        }
+    }
+```
+
+
+#### `GET /api/get-comment`
+
+Вибирає всі коментарі з бази данних згідно фільтру
+
+##### Параметри запиту:
+
+- `offset`  - зміщення
+- `limit`  - ліміт записів
+- `order_by`  - поле по якому сортувати
+- `order_direction`  - ASC або DESC
+- `user_id`  - id користувача якому належать коментарі
+
+  Всі ці параметри є необовязковими. Якщо нічого не передати то вернуться всі коментарі які є в базі. 
+
+
+
+##### Приклад успішної відповіді:
+
+```json
+    {
+        "comments": [
+            {
+                "id": 1,
+                "user_id": 24,
+                "text": "<a>xcxfx</a>",
+                "parent_comment_id": 0,
+                "created_at": "2023-11-09T12:24:03.000000Z",
+                "updated_at": "2023-11-09T12:24:03.000000Z",
+                "user": {
+                    "id": 24,
+                    "name": "viktor",
+                    "avatar_url": "storage/avatars/24/1699532297.jpeg",
+                    "email": "vitya.ak22071990@gmail.com",
+                    "passport_id": null,
+                    "passport_token": null,
+                    "email_verified_at": null,
+                    "created_at": "2023-11-09T12:18:17.000000Z",
+                    "updated_at": "2023-11-09T12:18:17.000000Z"
+                },
+                "parent_comment": null,
+                "child_comments": [
+                    {
+                        "id": 3,
+                        "user_id": 24,
+                        "text": "<a>xcxfx</a>",
+                        "parent_comment_id": 1,
+                        "created_at": "2023-11-09T12:24:36.000000Z",
+                        "updated_at": "2023-11-09T12:24:36.000000Z",
+                        "user": {
+                            "id": 24,
+                            "name": "viktor",
+                            "avatar_url": "storage/avatars/24/1699532297.jpeg",
+                            "email": "vitya.ak22071990@gmail.com",
+                            "passport_id": null,
+                            "passport_token": null,
+                            "email_verified_at": null,
+                            "created_at": "2023-11-09T12:18:17.000000Z",
+                            "updated_at": "2023-11-09T12:18:17.000000Z"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "user_id": 24,
+                "text": "<a>xcxfx</a>",
+                "parent_comment_id": null,
+                "created_at": "2023-11-09T12:24:13.000000Z",
+                "updated_at": "2023-11-09T12:24:13.000000Z",
+                "user": {
+                    "id": 24,
+                    "name": "viktor",
+                    "avatar_url": "storage/avatars/24/1699532297.jpeg",
+                    "email": "vitya.ak22071990@gmail.com",
+                    "passport_id": null,
+                    "passport_token": null,
+                    "email_verified_at": null,
+                    "created_at": "2023-11-09T12:18:17.000000Z",
+                    "updated_at": "2023-11-09T12:18:17.000000Z"
+                },
+                "parent_comment": null,
+                "child_comments": []
+            },
+            {
+                "id": 3,
+                "user_id": 24,
+                "text": "<a>xcxfx</a>",
+                "parent_comment_id": 1,
+                "created_at": "2023-11-09T12:24:36.000000Z",
+                "updated_at": "2023-11-09T12:24:36.000000Z",
+                "user": {
+                    "id": 24,
+                    "name": "viktor",
+                    "avatar_url": "storage/avatars/24/1699532297.jpeg",
+                    "email": "vitya.ak22071990@gmail.com",
+                    "passport_id": null,
+                    "passport_token": null,
+                    "email_verified_at": null,
+                    "created_at": "2023-11-09T12:18:17.000000Z",
+                    "updated_at": "2023-11-09T12:18:17.000000Z"
+                },
+                "parent_comment": {
+                    "id": 1,
+                    "user_id": 24,
+                    "text": "<a>xcxfx</a>",
+                    "parent_comment_id": 0,
+                    "created_at": "2023-11-09T12:24:03.000000Z",
+                    "updated_at": "2023-11-09T12:24:03.000000Z"
+                },
+                "child_comments": []
+            }
+        ]
+    }
+```
+##### Приклад неуспішної відповіді:
+
+```json
+    {
+        "comments": []
+    }
+```
+
+#### `GET /api/get-user-id`
+
+Вертає всі данні про користувача якщо такий є у системі.
+
+##### Параметри запиту:
+
+- `user_id` - id користувача
+
+
+##### Приклад успішної відповіді:
+
+```json
+    {
+        "data": {
+            "id": 24,
+            "name": "viktor",
+            "avatar_url": "storage/avatars/24/1699532297.jpeg",
+            "email": "vitya.ak22071990@gmail.com",
+            "passport_id": null,
+            "passport_token": null,
+            "email_verified_at": null,
+            "created_at": "2023-11-09T12:18:17.000000Z",
+            "updated_at": "2023-11-09T12:18:17.000000Z"
+        }
+    }
+```
+##### Приклад неуспішної відповіді:
+
+```json
+    {
+        "error": 
+        "User not found"
+    }
+```
+
+#### `GET /api/get-column-comment-id`
+
+Вертає один коментар по його id
+
+##### Параметри запиту:
+
+- `id` - id коментаря
+
+
+##### Приклад успішної відповіді:
+
+```json
+    {
+        "comment": {
+            "id": 1,
+            "user_id": 24,
+            "text": "<a>xcxfx</a>",
+            "parent_comment_id": 0,
+            "created_at": "2023-11-09T12:24:03.000000Z",
+            "updated_at": "2023-11-09T12:24:03.000000Z",
+            "user": {
+                "id": 24,
+                "name": "viktor",
+                "avatar_url": "storage/avatars/24/1699532297.jpeg",
+                "email": "vitya.ak22071990@gmail.com",
+                "passport_id": null,
+                "passport_token": null,
+                "email_verified_at": null,
+                "created_at": "2023-11-09T12:18:17.000000Z",
+                "updated_at": "2023-11-09T12:18:17.000000Z"
+            },
+            "parent_comment": null,
+            "child_comments": [
+                {
+                    "id": 3,
+                    "user_id": 24,
+                    "text": "<a>xcxfx</a>",
+                    "parent_comment_id": 1,
+                    "created_at": "2023-11-09T12:24:36.000000Z",
+                    "updated_at": "2023-11-09T12:24:36.000000Z",
+                    "user": {
+                        "id": 24,
+                        "name": "viktor",
+                        "avatar_url": "storage/avatars/24/1699532297.jpeg",
+                        "email": "vitya.ak22071990@gmail.com",
+                        "passport_id": null,
+                        "passport_token": null,
+                        "email_verified_at": null,
+                        "created_at": "2023-11-09T12:18:17.000000Z",
+                        "updated_at": "2023-11-09T12:18:17.000000Z"
+                    }
+                }
+            ]
+        }
+    }
+```
+##### Приклад неуспішної відповіді:
+
+```json
+    {
+        "error": "Comment not found"
+    }
+```
+
+### Тестування здійнювалось в postman.
+
+
+
+# Розгортання та тестування додатку
+
+## Клонування репозиторію
+
+Відкрийте термінал та виконайте наступну команду для клонування репозиторію:
+
+```bash
+git clone https://github.com/vitikstar/laravel-spa.git
+```
+
+## Встановіть Docker
+
+Перейдіть на офіційний сайт Docker.
+Завантажте та встановіть Docker, використовуючи стандартний процес для вашої операційної системи.
+
+## Клонування репозиторію
+
+Відкрийте термінал та виконайте наступну команду для клонування репозиторію:
+
+```bash
+git clone https://github.com/vitikstar/laravel-spa.git
+```
+
+## Перейдіть в кореневу папку проекту
+
+```bash
+cd laravel-sp
+```
+
+### Запустіть Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+Це створить необхідні контейнери, і ваш додаток буде доступний за адресою http://localhost:8082.
+
+### Використовуйте Postman для тестування API
+
+Завантажте та встановіть Postman.
+Використовуйте Postman для здійснення тестів API.
+Тепер ви готові використовувати цей проект та тестувати його API за допомогою Postman.
