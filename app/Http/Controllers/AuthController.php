@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Events\UserCreated;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -66,6 +67,8 @@ class AuthController extends Controller
         $user->update(['avatar_url' => $path]);
 
         $token = $user->createToken('app-token')->accessToken;
+
+        event(new UserCreated($user));
 
         return response(['token' => $token], 200);
 

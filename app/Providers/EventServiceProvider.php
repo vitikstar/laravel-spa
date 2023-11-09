@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\CommentCreated' => [
             'App\Listeners\NotifyAdminOnComment',
         ],
+        'App\Events\UserCreated' => [
+            'App\Listeners\NotifyAdminOnUser',
+        ],
     ];
 
     /**
