@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Events\CommentCreated;
 use App\Models\Comment;
 use App\Rules\AllowedHtmlTags;
 use Illuminate\Http\Request;
@@ -49,6 +50,7 @@ class CommentController extends Controller
         $comment->update(['file' => $path]);
 
         if ($comment) {
+            event(new CommentCreated($comment));
             return response(['response' => $comment], 200);
         }
     }
