@@ -1,0 +1,272 @@
+{
+	"info": {
+		"_postman_id": "81ea20f9-0e7f-4a9e-8f94-433a9e3f121f",
+		"name": "spa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22833792",
+		"_collection_link": "https://lunar-firefly-110074.postman.co/workspace/My-Workspace~7a0dc6f0-8380-4dfe-8e54-6de2fd11c411/collection/22833792-81ea20f9-0e7f-4a9e-8f94-433a9e3f121f?action=share&source=collection_link&creator=22833792"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "viktor111",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "vitya.ak22071990@gmail.com111",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "111111",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/Users/viktorbaranov/Desktop/images.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://spa.edu-smart.space/api/register",
+					"protocol": "http",
+					"host": [
+						"spa",
+						"edu-smart",
+						"space"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "vitya.ak22071990@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "11111",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://spa.edu-smart.space/api/login",
+					"protocol": "http",
+					"host": [
+						"spa",
+						"edu-smart",
+						"space"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add-comment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDExYzk4MWUxZDhhNWE0Mzg5ZmYxMjMxNTBlMmUxNjdhNTYyMDY5MWNkNzM3Mzc4NzM3ZWFhYjZlOTIyYmUxNjc2MzU3NjBmOTdiZjk4N2IiLCJpYXQiOjE2OTk1MzIyOTcuMjEwNTkzLCJuYmYiOjE2OTk1MzIyOTcuMjEwNTk0LCJleHAiOjE3MzExNTQ2OTcuMjAxODQ3LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.KuZObyuVeToYYJmWLEfhJ9ZUqRk2aW_qVJEdKAQP_FPfHaaYwP6LeCqiTLJBPPYNhou04a1Pbry0rBrn_YU8_pXV9jFco4YOn_CK-5ddFWl_FGEu54Mm-aZAowWBIk2NAIBpCfcnVQMy3uhTdIxuH0Rbf2G3AsACfUrfwsXVSH4EuL-i8Iuswov6VFVWiayNWmGxP7PARopY7aaR1pNahJ8BMb3CKaHDS0fjp8FWoo4ssN3b0gjKSov3rhrDwpvi_I7mXyKE3dwW3oOyvWu1ETsumNtkkFbgv6K-qbnuPEaorFSldPf2ZItK7XF0q2MH7U4nCMfBaFqTlhnyr8zxmefEau7lhhqY-3f3TolNTtDPWjjpPJzurVYXcBjhTpUB40olWbOVaBw1luv45pHxXMkx5IQh0VSPGr46mK1Bu43Z9I9JyoZvAEERZs2p1tInmLkiUB5MkTHLkSM1OjQKh2LHaTi9h2GaiBHjBHdzB-W9GDXcEyAeuphvVz86jvKK6Se9j_dqGJ-3mJrphnpgdayAid5JJ4jpP4hWpMn0AaYKzsrjzy4EVdYzV9FIXV1SEwkmcfCodv2nHvJHo7VNmv6spQG7KQ5tm37nXe5UxJT6rIIKcDaL-NnBz_ZNy45uh81Te3XTFq2GDTrHn__aCy9ylaR2TZ4bihjoB8dWDnc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "text",
+							"value": "<a>xcxfx</a>",
+							"type": "text"
+						},
+						{
+							"key": "parent_comment_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/viktorbaranov/Desktop/images.jpeg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://spa.edu-smart.space/api/add-comment",
+					"protocol": "http",
+					"host": [
+						"spa",
+						"edu-smart",
+						"space"
+					],
+					"path": [
+						"api",
+						"add-comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-comment-all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://spa.edu-smart.space/api/get-comment?offset=0&limit=10&order_by=id&order_direction=ASC",
+					"protocol": "http",
+					"host": [
+						"spa",
+						"edu-smart",
+						"space"
+					],
+					"path": [
+						"api",
+						"get-comment"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "order_by",
+							"value": "id"
+						},
+						{
+							"key": "order_direction",
+							"value": "ASC"
+						},
+						{
+							"key": "user_id",
+							"value": "10",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_one_user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://spa.edu-smart.space/api/get-user-id?user_id=242",
+					"protocol": "http",
+					"host": [
+						"spa",
+						"edu-smart",
+						"space"
+					],
+					"path": [
+						"api",
+						"get-user-id"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "242"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-column-comment-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://spa.edu-smart.space/api/get-column-comment-id?id=122",
+					"protocol": "http",
+					"host": [
+						"spa",
+						"edu-smart",
+						"space"
+					],
+					"path": [
+						"api",
+						"get-column-comment-id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "122"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYmJmZWZjYWI5MmMwNGRiMWE5MGRhNzEwM2VkNzdiZTliZmZmODI0YjIxYjFiYTdmYzZkYzk4MDdiYTVkOGFjMDU0Y2Y1NGY4ZDZiNTNhZjQiLCJpYXQiOjE2OTk1MTk1MzQuMjQwMDg1LCJuYmYiOjE2OTk1MTk1MzQuMjQwMDg2LCJleHAiOjE3MzExNDE5MzQuMjI5MDc3LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.UM8AQbm36WIX4X41hb1zEB_rDBtPcjCL7yVimxjbwCarpDSfpGdNotpoiO677qak3zF-jyhaxUTeeJrcThczXbeTC8Ivzvl3PXr9QH3S2aurXqRw1v0V6p_pml_O11PLbkrrFq-UJ5o6QbLB9Pev9154WJ5PQ63y3roy-fOCW1i9Eah8JGUmsCzWhPSCZ_RrQDsC3vq-CBF3BzPMniMJo0mmDn9MAy4yadgCtECmbSBPEIKzn47LueOjj8-IrqkL1tMKlcdMaXpSvOxWtlBr8D4T_BXegWSLQGrVx-ky-amf4Zh4T_BrTOmjPN49jR3o4PLAWYE_rEIr7jjKStTerdQokddafBdu9UindQFN2VdSns-Gs_IAQnQOnsNu1pXWxJ2UBhDD7P_2fdnreOmMHfuCnTkd3Z4NxDQYKV6Mo0-ad1xONWwPYgf832_gW2yEGx9Uvle6Cp-oH5Tyiv3f2liDGYJqcaM9whcFarjWZ2ysmZdvh-0q9Zsxd9-ezKAEe-ypVIRSV0GMXnmv4x9jS8RnM0KHKJkw2APjwD-VBLs3YQMVbjlY7pbanUuK3VZxRzJZtQ4x7zHin7E6dvpM7LL8RNBs5h8JeuCQGD50RQhMs7aw8mPESDITm8HOL2_7sb8xLXuxcy0GWy6RO-5Vuj-4aI7ne2HlQlEfGMAZTkg",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
