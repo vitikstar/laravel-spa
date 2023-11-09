@@ -24,3 +24,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/add-comment', 'App\Http\Controllers\CommentController@add');
 });
 
+Route::get('/get-comment', 'App\Http\Controllers\CommentController@all');
+Route::get('/get-column-comment-id', 'App\Http\Controllers\CommentController@one');
