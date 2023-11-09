@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 # Встановлюємо Apache, PHP 8.0 та необхідні розширення PHP
-RUN apt-get update && apt-get install -y apache2 php8.2 libapache2-mod-php8.2 php8.2-mysql php8.2-xml git php8.2-curl php8.2-zip unzip
+RUN apt-get update && apt-get install -y apache2 php8.2 libapache2-mod-php8.2 php8.2-mysql php8.2-xml git php8.2-curl php8.2-gd php8.2-zip unzip
 
 
 
@@ -41,7 +41,7 @@ COPY . /var/www
 WORKDIR /var/www
 
 RUN cd /var/www && composer install
-
+RUN chmod -R 755 /var/www/public
 
 # Встановлюємо порт 80
 EXPOSE 80

@@ -26,3 +26,4 @@ Route::middleware('auth:api')->group(function () {
 
 Route::get('/get-comment', 'App\Http\Controllers\CommentController@all');
 Route::get('/get-column-comment-id', 'App\Http\Controllers\CommentController@one');
+Route::get('/get-user-id', 'App\Http\Controllers\UserController@one');
