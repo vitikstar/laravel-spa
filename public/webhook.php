@@ -8,7 +8,8 @@ $directory = '/var/www/edusmart/spa.edu-smart.space';
 
 chdir($directory);
 
-$result = exec('git pull origin main', $output, $returnCode);
+$result = exec('git pull origin main && composer update', $output, $returnCode);
+
 
 if ($returnCode !== 0) {
     header('Content-Type: application/json');
