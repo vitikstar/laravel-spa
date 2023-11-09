@@ -61,19 +61,30 @@ class CommentController extends Controller
         $orderBy = $request->input('order_by', 'created_at');
         $orderDirection = $request->input('order_direction', 'desc');
 
+        // Створення ключа для кешування
+        $cacheKey = 'comments:user:' . $user_id . ':offset:' . $offset . ':limit:' . $limit . ':order_by:' . $orderBy . ':order_direction:' . $orderDirection;
 
-        $query = Comment::with(['user', 'parentComment', 'childComments.user'])
-            ->orderBy($orderBy, $orderDirection)
-            ->offset($offset)
-            ->limit($limit);
+        // Перевірка, чи є дані в кеші
+        if (Cache::has($cacheKey)) {
+            // Якщо є, повернути дані з кеша
+            $comments = Cache::get($cacheKey);
+        } else {
+            // Якщо немає, виконати запит до бази даних
+            $query = Comment::with(['user', 'parentComment', 'childComments.user'])
+                ->orderBy($orderBy, $orderDirection)
+                ->offset($offset)
+                ->limit($limit);
 
-        $query->when($user_id !== 0, function ($query) use ($user_id) {
-            $query->where('user_id', $user_id);
-        });
+            $query->when($user_id !== 0, function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            });
 
-        // Отримати коментарі
-        $comments = $query->get();
+            // Отримати коментарі
+            $comments = $query->get();
 
+            // Зберегти результат у кеш
+            Cache::put($cacheKey, $comments, 60); // 60 хвилин (змініть цей час за необхідності)
+        }
 
         // Повернути результат
         return response()->json(['comments' => $comments], 200);
