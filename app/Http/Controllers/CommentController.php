@@ -6,6 +6,7 @@ use App\Rules\AllowedHtmlTags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class CommentController extends Controller
 {
@@ -13,7 +14,21 @@ class CommentController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'text' => ['required', 'string', new AllowedHtmlTags],
+            'file' => 'mimes:jpeg,jpg,png,gif,txt',
         ]);
+
+        $file = $request->file('file');
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+       // Перевірка на формат
+       $formats = ['jpeg', 'jpg', 'png', 'gif','txt'];
+       $fileFormat = $file->getClientOriginalExtension();
+
+       if (!in_array($fileFormat, $formats)) {
+           return response()->json(['error' => 'Invalid file format'], 422);
+       }
 
         if ($validator->fails()) {
             // Handle validation failure
@@ -23,8 +38,14 @@ class CommentController extends Controller
         $comment = Comment::create([
             'user_id' => Auth::id(),
             'text'=>$request->text,
-            'is_reply'=>$request->is_reply,
+            'parent_comment_id'=>$request->parent_comment_id,
         ]);
+
+        $path = 'storage/comment_file/' . $comment->id . '/' . time() . '.' . $fileFormat;
+
+        Storage::put($path, $file);
+
+        $comment->update(['file' => $path]);
 
         if ($comment) {
             return response(['response' => $comment], 200);
@@ -41,7 +62,7 @@ class CommentController extends Controller
         $orderDirection = $request->input('order_direction', 'desc');
 
 
-        $query = Comment::with('user')
+        $query = Comment::with(['user', 'parentComment', 'childComments.user'])
             ->orderBy($orderBy, $orderDirection)
             ->offset($offset)
             ->limit($limit);
@@ -62,7 +83,7 @@ class CommentController extends Controller
     {
         $commentId = $request->input('id', 0);
 
-        $comment = Comment::with('user')->find($commentId);
+        $comment = Comment::with(['user', 'parentComment', 'childComments.user'])->find($commentId);
 
         if ($comment) {
             return response()->json(['comment' => $comment], 200);

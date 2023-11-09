@@ -12,15 +12,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->text('text', 1000);
-            $table->boolean('is_reply')->default(false);
+            $table->unsignedBigInteger('parent_comment_id');
             $table->timestamps();
 
             // Foreign key relationship
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('file')->nullable();
 
             // Indexes
             $table->index('user_id');
-            $table->index('is_reply');
+            $table->index('parent_comment_id');
         });
     }
 

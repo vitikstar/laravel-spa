@@ -13,15 +13,24 @@ class Comment extends Model
         'id',
         'user_id',
         'text',
-        'is_reply',
+        'file',
+        'parent_comment_id',
         'date_create',
         'date_update',
     ];
 
-    // Define the relationship with the User model
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    public function parentComment()
+    {
+        return $this->belongsTo(Comment::class, 'parent_comment_id');
+    }
+
+    public function childComments()
+    {
+        return $this->hasMany(Comment::class, 'parent_comment_id');
+    }
 }
