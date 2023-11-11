@@ -3,51 +3,23 @@ namespace App\Http\Controllers;
 
 use App\Events\CommentCreated;
 use App\Models\Comment;
-use App\Rules\AllowedHtmlTags;
+use App\Services\CreateComment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
+
 
 class CommentController extends Controller
 {
+
+    protected $create_comment = "";
+
+    public function __construct(){
+        $this->create_comment = new CreateComment();
+    }
     public function add(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'text' => ['required', 'string', new AllowedHtmlTags],
-            'file' => 'mimes:jpeg,jpg,png,gif,txt',
-        ]);
 
-        $file = $request->file('file');
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-       // Перевірка на формат
-       $formats = ['jpeg', 'jpg', 'png', 'gif','txt'];
-       $fileFormat = $file->getClientOriginalExtension();
-
-       if (!in_array($fileFormat, $formats)) {
-           return response()->json(['error' => 'Invalid file format'], 422);
-       }
-
-        if ($validator->fails()) {
-            // Handle validation failure
-            return response(['error' => $validator->errors()], 422);
-        }
-
-        $comment = Comment::create([
-            'user_id' => Auth::id(),
-            'text'=>$request->text,
-            'parent_comment_id'=>$request->parent_comment_id,
-        ]);
-
-        $path = 'storage/comment_file/' . $comment->id . '/' . time() . '.' . $fileFormat;
-
-        Storage::put($path, $file);
-
-        $comment->update(['file' => $path]);
+        $comment = $this->create_comment->add($request->all(),$request->file('file'));
 
         if ($comment) {
             event(new CommentCreated($comment));

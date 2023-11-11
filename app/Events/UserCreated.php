@@ -12,13 +12,13 @@ class UserCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $comment;
+    public $user;
 
-    public function __construct($comment)
+    public function __construct($user)
     {
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new NewUserMail());
 
-        $this->comment = $comment;
+        $this->user = $user;
     }
 }
 

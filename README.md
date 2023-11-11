@@ -361,3 +361,89 @@ docker-compose up -d
 Використовуйте Postman для здійснення тестів API.
 Для простоти завантажте [колекцію](spa.postman_collection.json) та імпортуйте її в постман
 Тепер ви готові використовувати цей проект та тестувати його API за допомогою Postman.
+
+# Документація GraphQL
+
+Ласкаво просимо до документації GraphQL API для цього проекту. Окрім REST API, наш проект включає кінцеву точку GraphQL, доступну за адресою http://localhost:8082/graphql або http://spa.edu-smart.space/graphql. Тут ви знайдете детальну інформацію про п’ять запитів і мутацій GraphQL, які можна використовувати для взаємодії з системою.
+
+## Мутації
+
+### 1. Створіть коментар
+
+Використовуйте цю мутацію, щоб додати новий коментар.
+
+```graphql
+mutation {
+  createComment(
+    text: "<a>QraphQL</a>"
+  ) {
+    data
+  }
+}
+```
+
+### 2. Реєстрація користувача
+
+Зареєструйте нового користувача з цією мутацією.
+
+```graphql
+mutation {
+  registerUser(
+    name: "viktor",
+    email: "john@example.com",
+    password: "securepassword"
+  ) {
+    token,
+    data
+  }
+}
+```
+
+### 3. Автентифікація користувача
+
+Автентифікуйте існуючого користувача з цією мутацією.
+
+```graphql
+mutation {
+  authUser(
+    email: "john@example.com",
+    password: "securepassword"
+  ) {
+    token,
+    data
+  }
+}
+```
+## Запити
+
+### 1. Отримайте коментар за ідентифікатором
+
+Отримати
+
+```graphql
+query {
+  comment(id: 5) {
+    text
+  }
+}
+```
+
+### 2. Отримати всі коментарі
+
+Отримати всі коментарі з підтримкою розбиття сторінок.
+
+```graphql
+query {
+  comments(page: 1, perPage: 1) {
+    data {
+      text
+    }
+  }
+}
+```
+
+## Інструменти розробки GraphQL
+
+Для зручного тестування та налагодження ми встановили GraphQL DevTools, доступні за адресою http://localhost:8082/graphiql.
+
+Крім того, усі згадані вище запити GraphQL доступні в [колекції](spa.postman_collection.json) Postman для зручності тестування.
