@@ -48,6 +48,12 @@ docker exec -it laravel-spa-php-1 composer install
 
 Після цього Ваш додаток буде доступний за адресою http://localhost:8082.
 
+### Також для успішної аутентифікації виконайте команду
+
+```bash
+docker exec -it laravel-spa-php-1 php artisan passport:keys
+```
+
 ### Використовуйте Postman для тестування API
 
 Завантажте та встановіть [Postman](https://www.postman.com/downloads/?utm_source=postman-home).
