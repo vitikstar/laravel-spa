@@ -8,6 +8,166 @@
 	},
 	"item": [
 		{
+			"name": "graphql",
+			"item": [
+				{
+					"name": "addComment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZDA2Njg3MzdlNzJkNGZlMzdiZDY5ZGRlZjcxMjMwMWQwNzE2MDZkMTI5MzNjNTA2YjJkMjE3MDY0Nzc1YjQzZjYyMTdhZGNmMzNlNzAzNDciLCJpYXQiOjE2OTk2OTQ5MzYuMzY3MTM0LCJuYmYiOjE2OTk2OTQ5MzYuMzY3MTM5LCJleHAiOjE3MzEzMTczMzYuMzMxNzI2LCJzdWIiOiIzOCIsInNjb3BlcyI6W119.dTFhsp_TgT2NclAiAkWBgBkFi5OYquahdUSDKVv1aAiW0TDxsKqE5USE24P6KHJSEi_crOqztGGuPiNj4SgGptixTVY25rfEK_j0t90rLvZ7hkVvgGbhO0C-emn0ShlVjLeW7Dgvb0fnHJ8Sbgk5A7W0rZ4awj9JqHyp9Gorv8FXMXoyv73AKwnKhMOANc4oYAU2p-gYAYewHkFu5Y8yNciLcNP68ZRygpSAfPBIO9gIR5eabzV61XD51Bo-_HokZ5C7F7XIDhYnNiEQ_fLHPtm9IBEFrl7iG4lizMD2Fc2Se-nKkfFgE1YAmkrA1DDtZmN-lt4PM5MkaUvMZPopCmSzybnCAtNBet9oWiX9bFxi6ZUJ2UGs0FBCPYCDRo_vVt9TvPQ4JlOocW-7YajD80-6zxVFTlgJC2vHRCZZ3yaoefaLzjcmjf0QSlguykHeu7cbfBIKRNZpp3Zyn6E7qf9RQnFbpqrDJEC61J7AHDvjIKZFJp2r0IbvjjsOelTLddK_SmC5dOrpJUzRM_Sv-JGr0AH5WSlFOHPkn_GJOa1CL3lw7dGaX2ZV1tkCNKiVTxU9fm1_bEX8QP4hHmIafp_li8QrUQHXiYKMOdVpOmK4TAqV_4e3UxRemEVJOM4FyXN4fHAhR41h2nRW28LEeysqizK4hbddA2zgGH4eGgM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n  createComment(\n    text: \"<a>QraphQL</a>\",\n  ) {\n    data\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://spa.edu-smart.space/graphql",
+							"protocol": "http",
+							"host": [
+								"spa",
+								"edu-smart",
+								"space"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDExYzk4MWUxZDhhNWE0Mzg5ZmYxMjMxNTBlMmUxNjdhNTYyMDY5MWNkNzM3Mzc4NzM3ZWFhYjZlOTIyYmUxNjc2MzU3NjBmOTdiZjk4N2IiLCJpYXQiOjE2OTk1MzIyOTcuMjEwNTkzLCJuYmYiOjE2OTk1MzIyOTcuMjEwNTk0LCJleHAiOjE3MzExNTQ2OTcuMjAxODQ3LCJzdWIiOiIyNCIsInNjb3BlcyI6W119.KuZObyuVeToYYJmWLEfhJ9ZUqRk2aW_qVJEdKAQP_FPfHaaYwP6LeCqiTLJBPPYNhou04a1Pbry0rBrn_YU8_pXV9jFco4YOn_CK-5ddFWl_FGEu54Mm-aZAowWBIk2NAIBpCfcnVQMy3uhTdIxuH0Rbf2G3AsACfUrfwsXVSH4EuL-i8Iuswov6VFVWiayNWmGxP7PARopY7aaR1pNahJ8BMb3CKaHDS0fjp8FWoo4ssN3b0gjKSov3rhrDwpvi_I7mXyKE3dwW3oOyvWu1ETsumNtkkFbgv6K-qbnuPEaorFSldPf2ZItK7XF0q2MH7U4nCMfBaFqTlhnyr8zxmefEau7lhhqY-3f3TolNTtDPWjjpPJzurVYXcBjhTpUB40olWbOVaBw1luv45pHxXMkx5IQh0VSPGr46mK1Bu43Z9I9JyoZvAEERZs2p1tInmLkiUB5MkTHLkSM1OjQKh2LHaTi9h2GaiBHjBHdzB-W9GDXcEyAeuphvVz86jvKK6Se9j_dqGJ-3mJrphnpgdayAid5JJ4jpP4hWpMn0AaYKzsrjzy4EVdYzV9FIXV1SEwkmcfCodv2nHvJHo7VNmv6spQG7KQ5tm37nXe5UxJT6rIIKcDaL-NnBz_ZNy45uh81Te3XTFq2GDTrHn__aCy9ylaR2TZ4bihjoB8dWDnc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n  registerUser(\n    name: \"viktor11161q1111112q1\",\n    email: \"john@example.com211\",\n    password: \"securepassword\"\n  ) {\n    token,\n    data\n    }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://spa.edu-smart.space/graphql",
+							"protocol": "http",
+							"host": [
+								"spa",
+								"edu-smart",
+								"space"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCommentOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n  comment(id: 5) {\n    text\n  }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://spa.edu-smart.space/graphql",
+							"protocol": "http",
+							"host": [
+								"spa",
+								"edu-smart",
+								"space"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCommentAll",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\n  comments(page: 1, perPage: 1) {\n    data {\n      text\n    }\n  }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://spa.edu-smart.space/graphql",
+							"protocol": "http",
+							"host": [
+								"spa",
+								"edu-smart",
+								"space"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\n  authUser(\n    email: \"vitya.ak22071990@gmail.com\",\n    password: \"111111\"\n  ) {\n    token,\n    data\n  }\n}\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://spa.edu-smart.space/graphql",
+							"protocol": "http",
+							"host": [
+								"spa",
+								"edu-smart",
+								"space"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "register",
 			"request": {
 				"method": "POST",
@@ -17,12 +177,12 @@
 					"formdata": [
 						{
 							"key": "name",
-							"value": "viktor111",
+							"value": "viktor11161q11111111",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "vitya.ak22071990@gmail.com111",
+							"value": "vitya.ak22071990@gmail.com11121q11111111",
 							"type": "text"
 						},
 						{
@@ -38,13 +198,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://spa.edu-smart.space/api/register",
+					"raw": "http://localhost:8082/api/register",
 					"protocol": "http",
 					"host": [
-						"spa",
-						"edu-smart",
-						"space"
+						"localhost"
 					],
+					"port": "8082",
 					"path": [
 						"api",
 						"register"
@@ -63,24 +222,23 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "vitya.ak22071990@gmail.com",
+							"value": "vitya.ak22071990@gmail.com11121q1111111",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "11111",
+							"value": "111111",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://spa.edu-smart.space/api/login",
+					"raw": "http://localhost:8082/api/login",
 					"protocol": "http",
 					"host": [
-						"spa",
-						"edu-smart",
-						"space"
+						"localhost"
 					],
+					"port": "8082",
 					"path": [
 						"api",
 						"login"
@@ -190,7 +348,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://spa.edu-smart.space/api/get-user-id?user_id=242",
+					"raw": "http://spa.edu-smart.space/api/get-user-id?user_id=24",
 					"protocol": "http",
 					"host": [
 						"spa",
@@ -204,7 +362,7 @@
 					"query": [
 						{
 							"key": "user_id",
-							"value": "242"
+							"value": "24"
 						}
 					]
 				}
