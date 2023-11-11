@@ -24,7 +24,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 # Копіюємо конфігурацію Apache
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-COPY .docker/db/init.sql /docker-entrypoint-initdb.d/init.sql
 
 RUN a2ensite 000-default
 
@@ -40,7 +39,6 @@ COPY . /var/www
 # Встановлюємо залежності та генеруємо автозавантажувач Composer
 WORKDIR /var/www
 
-RUN cd /var/www && composer install
 RUN chmod -R 755 /var/www/public
 
 # Встановлюємо порт 80
