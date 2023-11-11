@@ -24,6 +24,7 @@ type User {
     updated_at: DateTime!
     data: String
     token: String
+    comments: [Comment!]!
 }
 
 type Comment {
