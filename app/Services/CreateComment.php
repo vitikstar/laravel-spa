@@ -16,7 +16,7 @@ class CreateComment
     {
         $validator = Validator::make($request, [
             'text' => ['required', 'string', new AllowedHtmlTags],
-            'file' => 'mimes:jpeg,jpg,png,gif,txt',
+            'file' => 'mimes:jpeg,jpg,png,gif,txt|max:100',
         ]);
 
 

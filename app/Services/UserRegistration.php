@@ -19,7 +19,7 @@ class UserRegistration
             'name' => 'required|string|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6',
-            'avatar' => 'image|mimes:jpeg,jpg,png,gif',
+            'avatar' => 'image|mimes:jpeg,jpg,png,gif|max:100',
         ]);
 
 
@@ -37,7 +37,7 @@ class UserRegistration
                     }
 
                     // Обрізати зображення до заданих розмірів
-                    $resizedImage = Image::make($image)->fit(300, 200)->encode($imageFormat);
+                    $resizedImage = Image::make($image)->fit(320, 240)->encode($imageFormat);
                 }
 
         $user = User::create([
