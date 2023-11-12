@@ -34,7 +34,8 @@ class Comment extends Model
         return $comments;
     }
 
-    public function comments($rootValue, array $args) {
+    public function comments($rootValue, array $args)
+    {
         return $this->getComments($args);
     }
 

@@ -10,7 +10,6 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-
 class UserRegistration
 {
     public function register($request, $image = null)
@@ -27,18 +26,18 @@ class UserRegistration
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        if($image){
+        if ($image) {
                     // Перевірка на формат
                     $allowedFormats = ['jpeg', 'jpg', 'png', 'gif'];
                     $imageFormat = $image->getClientOriginalExtension();
 
-                    if (!in_array($imageFormat, $allowedFormats)) {
-                        return response()->json(['error' => 'Invalid image format'], 422);
-                    }
+            if (!in_array($imageFormat, $allowedFormats)) {
+                return response()->json(['error' => 'Invalid image format'], 422);
+            }
 
                     // Обрізати зображення до заданих розмірів
                     $resizedImage = Image::make($image)->fit(320, 240)->encode($imageFormat);
-                }
+        }
 
         $user = User::create([
             'name' => $request['name'],
@@ -46,7 +45,7 @@ class UserRegistration
             'password' => Hash::make($request['password']),
         ]);
 
-        if($image){
+        if ($image) {
                 // Створення шляху для збереження в сховищі
                 $path = 'storage/avatars/' . $user->id . '/' . time() . '.' . $imageFormat;
 
@@ -57,9 +56,9 @@ class UserRegistration
                 $publicPath = public_path($path);
 
                 // Створення деректорії для публічного шляху, якщо вона не існує
-                if (!File::exists(public_path('storage/avatars/' . $user->id))) {
-                    File::makeDirectory(public_path('storage/avatars/' . $user->id), 0755, true);
-                }
+            if (!File::exists(public_path('storage/avatars/' . $user->id))) {
+                File::makeDirectory(public_path('storage/avatars/' . $user->id), 0755, true);
+            }
 
                 // Копіювання зображення в публічну папку
                 File::copy(storage_path('app/' . $path), $publicPath);
@@ -74,9 +73,5 @@ class UserRegistration
         //event(new UserCreated($user));
 
         return $user;
-
     }
-
 }
-
-?>

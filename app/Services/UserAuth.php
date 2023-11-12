@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Validator;
 
-
 class UserAuth
 {
     public function auth($request)
@@ -27,5 +26,3 @@ class UserAuth
         return null;
     }
 }
-
-?>

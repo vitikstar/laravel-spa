@@ -21,5 +21,3 @@ class CommentCreated
         $this->comment = $comment;
     }
 }
-
-?>

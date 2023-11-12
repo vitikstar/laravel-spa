@@ -7,19 +7,19 @@ use App\Services\CreateComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
-
 class CommentController extends Controller
 {
 
     protected $create_comment = "";
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->create_comment = new CreateComment();
     }
     public function add(Request $request)
     {
 
-        $comment = $this->create_comment->add($request->all(),$request->file('file'));
+        $comment = $this->create_comment->add($request->all(), $request->file('file'));
 
         if ($comment) {
             event(new CommentCreated($comment));
@@ -78,5 +78,3 @@ class CommentController extends Controller
         }
     }
 }
-
-?>

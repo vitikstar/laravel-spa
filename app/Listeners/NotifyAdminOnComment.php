@@ -11,4 +11,3 @@ class NotifyAdminOnComment implements ShouldQueue
         // Логіка сповіщення адміністратора про новий коментар
     }
 }
-?>

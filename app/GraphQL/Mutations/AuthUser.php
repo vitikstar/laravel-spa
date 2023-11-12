@@ -20,6 +20,5 @@ class AuthUser
             'data' => $user,
             'token' => $token
         ];
-
     }
 }

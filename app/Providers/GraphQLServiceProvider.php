@@ -32,5 +32,3 @@ class GraphQLServiceProvider extends ServiceProvider
         $this->app->bind('registerUser', RegisterUser::class);
     }
 }
-
-?>

@@ -8,8 +8,6 @@ use App\Rules\AllowedHtmlTags;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Comment;
 
-
-
 class CreateComment
 {
     public function add($request, $file = null)
@@ -23,7 +21,7 @@ class CreateComment
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        if($file){
+        if ($file) {
             // Перевірка на формат
             $formats = ['jpeg', 'jpg', 'png', 'gif','txt'];
             $fileFormat = $file->getClientOriginalExtension();
@@ -32,10 +30,10 @@ class CreateComment
                 return response()->json(['error' => 'Invalid file format'], 422);
             }
 
-                if ($validator->fails()) {
-                    // Handle validation failure
-                    return response(['error' => $validator->errors()], 422);
-                }
+            if ($validator->fails()) {
+                // Handle validation failure
+                return response(['error' => $validator->errors()], 422);
+            }
         }
 
 
@@ -45,7 +43,7 @@ class CreateComment
             'parent_comment_id'=> (isset($request['parent_comment_id'])) ?? $request['parent_comment_id'],
         ]);
 
-        if($file){
+        if ($file) {
             $path = 'storage/comment_file/' . $comment->id . '/' . time() . '.' . $fileFormat;
 
             Storage::put($path, $file);
@@ -56,7 +54,4 @@ class CreateComment
 
         return $comment;
     }
-
 }
-
-?>
